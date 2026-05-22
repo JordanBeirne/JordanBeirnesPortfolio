@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_project1"
+            android:title="Project 1 - Custom Card" />
+        <item
+            android:id="@+id/nav_project2"
+            android:title="Project 2 - Restaurant Reviews" />
+        <item
+            android:id="@+id/nav_project3"
+            android:title="Project 3 - DnD Dice Roller" />
+        <item
+            android:id="@+id/nav_project4"
+            android:title="Project 4 - Unscramble w/ Hint" />
+        <item
+            android:id="@+id/nav_project5"
+            android:title="Project 5 - Coffee Release" />
+    </group>
+</menu>

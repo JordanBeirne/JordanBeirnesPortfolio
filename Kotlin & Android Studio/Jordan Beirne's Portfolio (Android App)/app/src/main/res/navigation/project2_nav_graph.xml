@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/project2_nav_graph"
+    app:startDestination="@id/restaurantListFragment">
+
+    <fragment
+        android:id="@+id/restaurantListFragment"
+        android:name="edu.wcupa.jordanbeirnesportfolio.ui.project2.RestaurantListFragment" />
+
+    <fragment
+        android:id="@+id/entryDialogFragment"
+        android:name="edu.wcupa.jordanbeirnesportfolio.ui.project2.EntryDialogFragment" />
+</navigation>

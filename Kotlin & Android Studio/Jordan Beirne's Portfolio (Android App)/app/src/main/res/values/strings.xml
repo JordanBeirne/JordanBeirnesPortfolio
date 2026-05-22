@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Jordan Beirne\'s Portfolio</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Jordan Beirne\'s Portfolio</string>
+    <string name="nav_header_subtitle">jordanbeirne@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="juice_type">Type of Restaurant</string>
+    <string name="delete">Delete</string>
+    <string name="juice_name">Restaurant Name</string>
+    <string name="juice_description">Description</string>
+    <string name="juice_rating">Rating</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <string name="cuisine_type">Cuisine</string>
+
+    <string name="red">Red</string>
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+    <string name="cyan">Cyan</string>
+    <string name="yellow">Yellow</string>
+    <string name="magenta">Magenta</string>
+
+    <string name="roll">Roll</string>
+
+    <string name="instructions">Unscramble the word using all the letters.</string>
+    <string name="skip">Skip</string>
+    <string name="submit">Submit</string>
+    <string name="score">Score: %d</string>
+    <string name="word_count">%d/10</string>
+    <string name="enter_your_word">Enter your word</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="you_scored">"You scored: %d"</string>
+    <string name="exit">Exit</string>
+    <string name="play_again">Play Again</string>
+    <string name="wrong_guess">Wrong Guess!</string>
+
+    <string name="top_bar_name">Android Coffee Release</string>
+    <string name="grid_layout_toggle">Grid layout</string>
+    <string name="linear_layout_toggle">Linear layout</string>
+</resources>

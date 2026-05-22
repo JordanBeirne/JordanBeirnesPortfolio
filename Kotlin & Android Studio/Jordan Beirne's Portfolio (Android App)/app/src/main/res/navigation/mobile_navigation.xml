@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="edu.wcupa.jordanbeirnesportfolio.ui.home.HomeFragment"
+        android:label="@string/menu_home" />
+
+    <fragment
+        android:id="@+id/nav_project1"
+        android:name="edu.wcupa.jordanbeirnesportfolio.ui.project1.Project1Fragment"
+        android:label="Card Builder" />
+
+    <fragment
+        android:id="@+id/nav_project2"
+        android:name="edu.wcupa.jordanbeirnesportfolio.ui.project2.Project2Fragment"
+        android:label="Restaurant Review Tracker" />
+
+    <fragment
+        android:id="@+id/nav_project3"
+        android:name="edu.wcupa.jordanbeirnesportfolio.ui.project3.Project3Fragment"
+        android:label="DnD Dice Roller" />
+
+    <fragment
+        android:id="@+id/nav_project4"
+        android:name="edu.wcupa.jordanbeirnesportfolio.ui.project4.Project4Fragment"
+        android:label="Unscramble w/ Hint" />
+
+    <fragment
+        android:id="@+id/nav_project5"
+        android:name="edu.wcupa.jordanbeirnesportfolio.ui.project5.Project5Fragment"
+        android:label="Coffee Release" />
+    
+</navigation>
