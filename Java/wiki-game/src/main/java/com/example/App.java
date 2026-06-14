@@ -3,35 +3,40 @@ package com.example;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.example.ai.EmbedderService;
+import com.example.ai.LinkScorer;
+import com.example.graph.Node;
+import com.example.graph.WikiGameSolver;
+import com.example.wiki.WikiService;
+
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        java.util.logging.Logger.getLogger("io.github.fastily.jwiki.core.Wiki").setLevel(java.util.logging.Level.OFF);
+        java.util.logging.Logger.getLogger("ai.djl").setLevel(java.util.logging.Level.OFF);
 
         Scanner kb = new Scanner(System.in);
 
-        // --- Get user input for beginning and end ---
         System.out.println("Enter first article title: ");
         String start = takeInput(kb);
 
         System.out.println("Enter second article title:");
         String dest = takeInput(kb);
-        // ---------------------------------------------
 
         ArrayList<String> pathOrigin = new ArrayList<>();
         pathOrigin.add(start);
-        Node origin = new Node(start, pathOrigin, 0, CategoryMapper.map(start));
+        Node origin = new Node(start, pathOrigin, 0, 0);
 
-        WikiGameSolver solution = new WikiGameSolver(origin, dest);
+        EmbedderService embedder = new EmbedderService();
+
+        LinkScorer scorer = new LinkScorer(embedder);
+        WikiGameSolver solution = new WikiGameSolver(origin, dest, scorer);
 
         if (solution.getPath() == null) {
             System.out.println("No path found.");
         } else {
             System.out.println("Article found! Path: \n" + solution.getPath());
         }
-
-        // for (int i = 0; i < solution.getPath().size(); i++) {
-        //     System.out.print(" -> " + solution.getPath().get(i));
-        // }
     }
 
     private static String takeInput(Scanner kb) {

@@ -1,38 +1,31 @@
-package com.example;
+package com.example.graph;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
-import java.util.PriorityQueue;
+
+import com.example.ai.LinkScorer;
+import com.example.wiki.WikiService;
 
 public class WikiGameSolver {
 
-    /*
-    Run BFS
-    manage queue
-    manage visited
-    reconstruct path
-     */
     private Node start;
     private String dest;
-    private List<String> path;
-    private Queue queue = new PriorityQueue<>();
+    private Set<String> targetAdjacent;
+    private LinkScorer scorer;
     private static Set<String> failed = new HashSet<>();
     public Node end;
-    private Category targetCategory;
+    private List<String> path;
 
-    public WikiGameSolver(Node start, String dest) {
+    public WikiGameSolver(Node start, String dest, LinkScorer scorer) {
         this.start = start;
         this.dest = dest;
-        this.targetCategory = CategoryMapper.map(WikiService.getCategories(dest));
-        if (this.targetCategory == null) {
-            this.targetCategory = Category.Technology;
-        }
-
+        this.scorer = scorer;
+        this.targetAdjacent = WikiService.getTargetAdjacentArticles(dest);
         List<String> result = BFS(start);
         this.path = result;
     }
@@ -40,7 +33,7 @@ public class WikiGameSolver {
     private List<String> BFS(Node startNode) {
 
         Queue<Node> queue = new PriorityQueue<>(
-                Comparator.comparingInt(this::distanceFromTarget)
+                Comparator.comparingDouble((Node n) -> -n.score)
                         .thenComparingInt(n -> n.depth)
         );
         Set<String> visited = new HashSet<>();
@@ -70,12 +63,9 @@ public class WikiGameSolver {
                 Thread.sleep(4);
             } catch (InterruptedException e) {
             }
-            List<String> links = WikiService.getLinks(current.title.trim());
+            List<String> links = WikiService.getBodyLinks(current.title.trim());
 
             for (String link : links) {
-
-                System.out.println(current.getPath() + " -> " + link);
-
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
@@ -98,8 +88,14 @@ public class WikiGameSolver {
                 newPath.add(link);
 
                 if (current.depth + 1 <= 6) {
-                    Category cat = CategoryMapper.map(link);
-                    queue.add(new Node(link, newPath, current.depth + 1, cat));
+                    double localScore = scorer.score(current.title, link, dest);
+                    double totalScore = current.score + localScore - (0.12 * current.depth);
+                    if (targetAdjacent.contains(link)) {
+                        totalScore += 0.25; // 0.15–0.40
+                    }
+                    queue.add(
+                            new Node(link, newPath, current.depth + 1, totalScore)
+                    );
                 }
             }
         }
@@ -107,22 +103,7 @@ public class WikiGameSolver {
     }
 
     private int distanceFromTarget(Node node) {
-        Category c = node.category;
-
-        if (c == null || targetCategory == null) {
-            return Integer.MAX_VALUE;
-        }
-
-        Integer a = CategoryMapper.TARGET_SPACE.get(c);
-        Integer b = CategoryMapper.TARGET_SPACE.get(targetCategory);
-
-        System.out.println(node.title + " -> " + node.category + " vs " + targetCategory);
-
-        if (a == null || b == null) {
-            return 10;
-        }
-
-        return Math.abs(a - b);
+        return 0;
     }
 
     private String normalize(String s) {

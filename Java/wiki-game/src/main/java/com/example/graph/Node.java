@@ -1,19 +1,19 @@
-package com.example;
+package com.example.graph;
 
 import java.util.ArrayList;
 
-public class Node { // Purpose: State object
+public class Node {
 
     String title;
     ArrayList<String> path;
     int depth;
-    Category category;
+    double score;
 
-    public Node(String title, ArrayList<String> path, int depth, Category category) {
+    public Node(String title, ArrayList<String> path, int depth, double score) {
         this.title = title.trim();
         this.depth = depth;
         this.path = new ArrayList<>(path);
-        this.category = category;
+        this.score = score;
     }
 
     public String getPath() {
